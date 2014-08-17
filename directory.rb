@@ -3,12 +3,6 @@ def print_header
 	puts "---------------------"
 end 
 
-def print_body(students)
-	students.each_with_index() do |student, index|
-		puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-	end
-end
-
 def print_footer(names)
 	puts "Overall, we have #{names.length} great students"
 end
@@ -35,9 +29,9 @@ def imput_students
 	students
 end
 
-def print_A_names(students)
+def print_students(students)
 	students.each_with_index() do |student, index|
-		if student[:name].start_with?("A")
+		if student[:name].length < 12
 			puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
 		end
 	end
@@ -47,6 +41,5 @@ end
 
 students = imput_students
 print_header
-#print_body(students)
-print_A_names(students)
+print_students(students)
 print_footer(students)
