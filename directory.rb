@@ -35,8 +35,7 @@ def print_students(students)
 	index = 0
 	while index < students.length do
 		student = students[index]
-		puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-		puts "    This student has #{student[:hobbies]}, was born in #{student[:country]}, and is #{student[:height]} m tall."
+		puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort). This student has #{student[:hobbies]}, was born in #{student[:country]}, and is #{student[:height]} m tall.".center(100)
 		index += 1
 	end
 end
