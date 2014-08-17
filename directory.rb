@@ -30,10 +30,11 @@ def imput_students
 end
 
 def print_students(students)
-	students.each_with_index() do |student, index|
-		if student[:name].length < 12
-			puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-		end
+	index = 0
+	while index < students.length do
+		student = students[index]
+		puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+		index += 1
 	end
 end
 
