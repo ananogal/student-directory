@@ -17,10 +17,12 @@ def imput_students
 	#get the first name 
 	name = gets.chomp
 
+	studentHeight = 1.75
+
 	#while the name is not empty, reapeat this code
 	while !name.empty? do
 		#add students hash to the array
-		students << {:name => name, :cohort => :september}
+		students << {:name => name, :cohort => :september, :hobbies => :Hobbie, :country => :theCountry, :height => studentHeight}
 		puts "Now we have #{students.length} students"
 
 		#get another name from user
@@ -34,6 +36,7 @@ def print_students(students)
 	while index < students.length do
 		student = students[index]
 		puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+		puts "    This student has #{student[:hobbies]}, was born in #{student[:country]}, and is #{student[:height]} m tall."
 		index += 1
 	end
 end
