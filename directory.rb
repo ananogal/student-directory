@@ -3,7 +3,7 @@ def print_header
 	puts "---------------------"
 end 
 
-def print(students)
+def print_body(students)
 	students.each do |student|
 		puts "#{student[:name]} (#{student[:cohort]} cohort)"
 	end
@@ -14,8 +14,8 @@ def print_footer(names)
 end
 
 def imput_students
-	puts "Please enter the names of the students"
-	puts "To finish, just hit return twice"
+	print "Please enter the names of the students\n"
+	print "To finish, just hit return twice\n"
 
 	#create an empty array
 	students = []
@@ -27,7 +27,7 @@ def imput_students
 	while !name.empty? do
 		#add students hash to the array
 		students << {:name => name, :cohort => :september}
-		puts "Now we have #{students.length} students"
+		print "Now we have #{students.length} students\n"
 
 		#get another name from user
 		name = gets.chomp
@@ -39,5 +39,5 @@ end
 
 students = imput_students
 print_header
-print(students)
+print_body(students)
 print_footer(students)
