@@ -1,22 +1,3 @@
-#let's put all students into an array
-
-students = [[:name => "Enrique Comba Riepenhausen", :cohort => :september],
-			[:name => "Stephen Lloyd", :cohort => :september],
-			[:name => "Alex Peattie", :cohort => :september],
-			[:name => "vic329", :cohort => :september],
-			[:name => "NicolePell", :cohort => :september],
-			[:name => "Bernard", :cohort => :september],
-			[:name => "elenagarrone", :cohort => :september],
-			[:name => "Yvette Cook", :cohort => :september],
-			[:name => "Stephen Giles", :cohort => :september],
-			[:name => "Ana Isabel Nogal", :cohort => :september],
-			[:name => "craigh44", :cohort => :september],
-			[:name => "Tim Scully", :cohort => :september],
-			[:name => "Ella Schofield", :cohort => :september],
-			[:name => "Fadie H", :cohort => :september],
-			[:name => "mala23", :cohort => :september] 
-		] 
-
 def print_header
 	puts "The students of my cohort at Makers Academy"
 	puts "---------------------"
@@ -32,7 +13,31 @@ def print_footer(names)
 	puts "Overall, we have #{names.length} great students"
 end
 
+def imput_students
+	puts "Please enter the names of the students"
+	puts "To finish, just hit return twice"
+
+	#create an empty array
+	students = []
+
+	#get the first name 
+	name = gets.chomp
+
+	#while the name is not empty, reapeat this code
+	while !name.empty? do
+		#add students hash to the array
+		students << {:name => name, :cohort => :september}
+		puts "Now we have #{students.length} students"
+
+		#get another name from user
+		name = gets.chomp
+	end
+	students
+end
+
 #call methods
+
+students = imput_students
 print_header
 print(students)
 print_footer(students)
