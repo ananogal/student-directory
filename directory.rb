@@ -14,8 +14,8 @@ def print_footer(names)
 end
 
 def imput_students
-	print "Please enter the names of the students\n"
-	print "To finish, just hit return twice\n"
+	puts "Please enter the names of the students"
+	puts "To finish, just hit return twice"
 
 	#create an empty array
 	students = []
@@ -27,7 +27,7 @@ def imput_students
 	while !name.empty? do
 		#add students hash to the array
 		students << {:name => name, :cohort => :september}
-		print "Now we have #{students.length} students\n"
+		puts "Now we have #{students.length} students"
 
 		#get another name from user
 		name = gets.chomp
@@ -35,9 +35,18 @@ def imput_students
 	students
 end
 
+def print_A_names(students)
+	students.each_with_index() do |student, index|
+		if student[:name].start_with?("A")
+			puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+		end
+	end
+end
+
 #call methods
 
 students = imput_students
 print_header
-print_body(students)
+#print_body(students)
+print_A_names(students)
 print_footer(students)
