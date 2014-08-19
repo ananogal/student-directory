@@ -8,9 +8,9 @@ def print_footer(names)
 end
 
 def imput_students
-	puts "Please enter the names of the students"
+	puts "Please enter the names of the students and their cohort"
 	puts "To finish, just hit return twice"
-
+	puts "Enter a name"
 	#create an empty array
 	students = []
 
@@ -21,10 +21,18 @@ def imput_students
 
 	#while the name is not empty, reapeat this code
 	while !name.empty? do
-		#add students hash to the array
-		students << {:name => name, :cohort => :september, :hobbies => :Hobbie, :country => :theCountry, :height => studentHeight}
-		puts "Now we have #{students.length} students"
 
+		puts "Enter the student cohort"
+
+		studentCohort = gets.chomp
+
+		if !studentCohort.empty?
+			#add students hash to the array
+			students << {:name => name, :cohort => studentCohort.capitalize.to_sym, :hobbies => :Hobbie, :country => :theCountry, :height => studentHeight}
+		else
+			students << {:name => name, :cohort => "No cohort entered".to_sym, :hobbies => :Hobbie, :country => :theCountry, :height => studentHeight}
+		end
+		puts "Now we have #{students.length} students"
 		#get another name from user
 		name = gets.chomp
 	end
