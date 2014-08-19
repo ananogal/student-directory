@@ -40,11 +40,16 @@ def imput_students
 end
 
 def print_students(students)
-	index = 0
-	while index < students.length do
-		student = students[index]
-		puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort). This student has #{student[:hobbies]}, was born in #{student[:country]}, and is #{student[:height]} m tall.".center(100)
-		index += 1
+	new_students = students.group_by{|student| student[:cohort]}
+
+	new_students.each  do |cohort, students_by_cohort|
+		puts "Studients in cohort #{cohort}:"
+		index = 0
+		while index < students_by_cohort.length do
+			student = students_by_cohort[index]
+			puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort).".center(50)
+			index += 1
+		end
 	end
 end
 
