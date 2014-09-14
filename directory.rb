@@ -19,7 +19,8 @@ def imput_students
 	students = []
 
 	#get the first name 
-	name = gets.chomp
+	#name = gets.chomp
+	name = gets.sub("\n", "")
 
 	studentHeight = 1.75
 
@@ -28,7 +29,8 @@ def imput_students
 
 		puts "Enter the student cohort"
 
-		studentCohort = gets.chomp
+		#studentCohort = gets.chomp
+		studentCohort = gets.sub("\n", "")
 
 		if !studentCohort.empty?
 			#add students hash to the array
@@ -43,7 +45,9 @@ def imput_students
 		end
 		
 		#get another name from user
-		name = gets.chomp
+		puts "Enter a name"
+		#name = gets.chomp
+		name = gets.sub("\n", "")
 	end
 	students
 end
