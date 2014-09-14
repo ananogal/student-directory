@@ -17,8 +17,7 @@ def imput_students
 	puts "Enter a name"
 
 	#get the first name 
-	#name = gets.chomp
-	name = gets.sub("\n", "")
+	name = gets.chomp
 
 	studentHeight = 1.75
 
@@ -26,16 +25,9 @@ def imput_students
 	while !name.empty? do
 
 		puts "Enter the student cohort"
-
-		#studentCohort = gets.chomp
-		studentCohort = gets.sub("\n", "")
-
-		if !studentCohort.empty?
-			#add students hash to the array
-			@students << {:name => name, :cohort => studentCohort.capitalize.to_sym, :hobbies => :Hobbie, :country => :theCountry, :height => studentHeight}
-		else
-			@students << {:name => name, :cohort => "No cohort entered".to_sym, :hobbies => :Hobbie, :country => :theCountry, :height => studentHeight}
-		end
+		studentCohort = gets.chomp
+		addStudents(name, studentCohort)
+		
 		if(@students.length == 1)
 			puts "Now we have #{@students.length} student"
 		else
@@ -44,8 +36,15 @@ def imput_students
 		
 		#get another name from user
 		puts "Enter a name"
-		#name = gets.chomp
-		name = gets.sub("\n", "")
+		name = gets.chomp
+	end
+end
+
+def addStudents(name, cohort)
+	if !cohort.empty?
+		@students << {:name => name, :cohort => cohort.to_sym}
+	else
+		@students << {:name => name, :cohort => "No cohort entered".to_sym}
 	end
 end
 
@@ -85,10 +84,20 @@ def save_students
   file.close
 end
 
+def load_students
+  file = File.open("students.csv", "r")
+  file.readlines.each do |line|
+  	name, cohort = line.chomp.split(',')
+  	addStudents(name, cohort)
+  end
+  file.close
+end
+
 def print_menu
 	puts "1. Input the students"
 	puts "2. Show the students"
 	puts "3. Save the list to students.csv"
+	puts "4. Load the list from students.csv"
 	puts "9. Exit" # 9 because we'll be adding more items
 end
 
@@ -100,6 +109,8 @@ def process(selection)
 			showStudents
 		when "3"
 			save_students
+		when "4"
+			load_students
   		when "9"
     	exit # this will cause the program to terminate
   	else
