@@ -17,7 +17,7 @@ def imput_students
 	puts "Enter a name"
 
 	#get the first name 
-	name = gets.chomp
+	name = STDIN.gets.chomp
 
 	studentHeight = 1.75
 
@@ -25,7 +25,7 @@ def imput_students
 	while !name.empty? do
 
 		puts "Enter the student cohort"
-		studentCohort = gets.chomp
+		studentCohort = STDIN.gets.chomp
 		addStudents(name, studentCohort)
 		
 		if(@students.length == 1)
@@ -36,7 +36,7 @@ def imput_students
 		
 		#get another name from user
 		puts "Enter a name"
-		name = gets.chomp
+		name = STDIN.gets.chomp
 	end
 end
 
@@ -84,13 +84,25 @@ def save_students
   file.close
 end
 
-def load_students
-  file = File.open("students.csv", "r")
+def load_students(filename = "students.csv")
+  file = File.open(filename, "r")
   file.readlines.each do |line|
-  	name, cohort = line.chomp.split(',')
-  	addStudents(name, cohort)
+    name, cohort = line.chomp.split(',')
+    addStudents(name, cohort)
   end
   file.close
+end
+
+def try_load_students
+  filename = ARGV.first # first argument from the command line
+  return if filename.nil? # get out of the method if it isn't given
+  if File.exists?(filename) # if it exists
+    load_students(filename)
+     puts "Loaded #{@students.length} from #{filename}"
+  else # if it doesn't exist
+    puts "Sorry, #{filename} doesn't exist."
+    exit # quit the program
+  end
 end
 
 def print_menu
@@ -123,12 +135,13 @@ def interactive_menu
 	  	# 1. print the menu and ask the user what to do
 	  	print_menu
 	  	# 3. do what the user has asked
-	  	process(gets.chomp)
+	  	process(STDIN.gets.chomp)
 	end
 end
 
 #call methods
 @students = []
+try_load_students
 interactive_menu
 
 
