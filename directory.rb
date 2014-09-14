@@ -4,7 +4,11 @@ def print_header
 end 
 
 def print_footer(names)
-	puts "Overall, we have #{names.length} great students"
+	if(names.length == 1)
+		puts "Overall, we have #{names.length} great student"
+	else
+		puts "Overall, we have #{names.length} great students"
+	end
 end
 
 def imput_students
@@ -32,7 +36,12 @@ def imput_students
 		else
 			students << {:name => name, :cohort => "No cohort entered".to_sym, :hobbies => :Hobbie, :country => :theCountry, :height => studentHeight}
 		end
-		puts "Now we have #{students.length} students"
+		if(students.length == 1)
+			puts "Now we have #{students.length} student"
+		else
+			puts "Now we have #{students.length} students"
+		end
+		
 		#get another name from user
 		name = gets.chomp
 	end
