@@ -66,9 +66,18 @@ def print_students(students)
 	end
 end
 
+def shouldIPrint(students)
+	if(students.length > 0 )
+		print_header
+		print_students(students)
+		print_footer(students)	
+	else
+		puts "No students to print"
+	end
+end
+
+
 #call methods
 
 students = imput_students
-print_header
-print_students(students)
-print_footer(students)
+shouldIPrint(students)
