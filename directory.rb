@@ -3,11 +3,11 @@ def print_header
 	puts "---------------------"
 end 
 
-def print_footer(names)
-	if(names.length == 1)
-		puts "Overall, we have #{names.length} great student"
+def print_footer
+	if(@students.length == 1)
+		puts "Overall, we have #{@students.length} great student"
 	else
-		puts "Overall, we have #{names.length} great students"
+		puts "Overall, we have #{@students.length} great students"
 	end
 end
 
@@ -15,8 +15,6 @@ def imput_students
 	puts "Please enter the names of the students and their cohort"
 	puts "To finish, just hit return twice"
 	puts "Enter a name"
-	#create an empty array
-	students = []
 
 	#get the first name 
 	#name = gets.chomp
@@ -34,14 +32,14 @@ def imput_students
 
 		if !studentCohort.empty?
 			#add students hash to the array
-			students << {:name => name, :cohort => studentCohort.capitalize.to_sym, :hobbies => :Hobbie, :country => :theCountry, :height => studentHeight}
+			@students << {:name => name, :cohort => studentCohort.capitalize.to_sym, :hobbies => :Hobbie, :country => :theCountry, :height => studentHeight}
 		else
-			students << {:name => name, :cohort => "No cohort entered".to_sym, :hobbies => :Hobbie, :country => :theCountry, :height => studentHeight}
+			@students << {:name => name, :cohort => "No cohort entered".to_sym, :hobbies => :Hobbie, :country => :theCountry, :height => studentHeight}
 		end
-		if(students.length == 1)
-			puts "Now we have #{students.length} student"
+		if(@students.length == 1)
+			puts "Now we have #{@students.length} student"
 		else
-			puts "Now we have #{students.length} students"
+			puts "Now we have #{@students.length} students"
 		end
 		
 		#get another name from user
@@ -49,11 +47,10 @@ def imput_students
 		#name = gets.chomp
 		name = gets.sub("\n", "")
 	end
-	students
 end
 
-def print_students(students)
-	new_students = students.group_by{|student| student[:cohort]}
+def print_students
+	new_students = @students.group_by{|student| student[:cohort]}
 
 	new_students.each  do |cohort, students_by_cohort|
 		puts "Studients in cohort #{cohort}:"
@@ -66,18 +63,46 @@ def print_students(students)
 	end
 end
 
-def shouldIPrint(students)
-	if(students.length > 0 )
+def showStudents
+	if(@students.length > 0 )
 		print_header
-		print_students(students)
-		print_footer(students)	
+		print_students
+		print_footer	
 	else
 		puts "No students to print"
 	end
 end
 
+def print_menu
+	puts "1. Input the students"
+	puts "2. Show the students"
+	puts "9. Exit" # 9 because we'll be adding more items
+end
+
+def process(selection)
+	case selection
+  		when "1"
+			imput_students
+		when "2"
+			showStudents
+  		when "9"
+    	exit # this will cause the program to terminate
+  	else
+    	puts "I don't know what you meant, try again"
+	end
+end
+
+def interactive_menu
+	loop do
+	  	# 1. print the menu and ask the user what to do
+	  	print_menu
+	  	# 3. do what the user has asked
+	  	process(gets.chomp)
+	end
+end
 
 #call methods
+@students = []
+interactive_menu
 
-students = imput_students
-shouldIPrint(students)
+
