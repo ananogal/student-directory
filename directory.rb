@@ -19,8 +19,6 @@ def imput_students
 	#get the first name 
 	name = STDIN.gets.chomp
 
-	studentHeight = 1.75
-
 	#while the name is not empty, reapeat this code
 	while !name.empty? do
 
