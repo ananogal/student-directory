@@ -12,6 +12,10 @@ Ruby
 How to use
 ==========
 
-```shell
-ruby directory.rb
-```
+Clone the repository:<br/>
+``$ git clone https://github.com/ananogal/student-directory.git``
+
+Run:<br/>
+``
+$ ruby directory.rb
+``
